@@ -1,0 +1,918 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Capabilities.V1.xml" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Alias="Capabilities" Namespace="Org.OData.Capabilities.V1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.xml" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Alias="Core" Namespace="Org.OData.Core.V1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/HTML5.xml" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Alias="HTML5" Namespace="com.sap.vocabularies.HTML5.v1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/UI.xml" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Alias="UI" Namespace="com.sap.vocabularies.UI.v1"/>
+    </edmx:Reference>
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="timetracker.srv.service.TIME_TRACKER_SRV" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityContainer Name="EntityContainer" m:IsDefaultEntityContainer="true">
+                <EntitySet Name="Employees" EntityType="timetracker.srv.service.TIME_TRACKER_SRV.Employees"/>
+                <FunctionImport Name="Employees_draftPrepare" EntitySet="Employees" ReturnType="timetracker.srv.service.TIME_TRACKER_SRV.Employees" m:HttpMethod="POST" sap:action-for="timetracker.srv.service.TIME_TRACKER_SRV.Employees">
+                    <Parameter Name="EMP_ID" Type="Edm.Guid" Nullable="false" Mode="In"/>
+                    <Parameter Name="IsActiveEntity" Type="Edm.Boolean" Nullable="false" Mode="In"/>
+                    <Parameter Name="SideEffectsQualifier" Type="Edm.String" Mode="In" Nullable="true"/>
+                </FunctionImport>
+                <FunctionImport Name="Employees_draftActivate" EntitySet="Employees" ReturnType="timetracker.srv.service.TIME_TRACKER_SRV.Employees" m:HttpMethod="POST" sap:action-for="timetracker.srv.service.TIME_TRACKER_SRV.Employees">
+                    <Parameter Name="EMP_ID" Type="Edm.Guid" Nullable="false" Mode="In"/>
+                    <Parameter Name="IsActiveEntity" Type="Edm.Boolean" Nullable="false" Mode="In"/>
+                </FunctionImport>
+                <FunctionImport Name="Employees_draftEdit" EntitySet="Employees" ReturnType="timetracker.srv.service.TIME_TRACKER_SRV.Employees" m:HttpMethod="POST" sap:action-for="timetracker.srv.service.TIME_TRACKER_SRV.Employees">
+                    <Parameter Name="EMP_ID" Type="Edm.Guid" Nullable="false" Mode="In"/>
+                    <Parameter Name="IsActiveEntity" Type="Edm.Boolean" Nullable="false" Mode="In"/>
+                    <Parameter Name="PreserveChanges" Type="Edm.Boolean" Mode="In" Nullable="true"/>
+                </FunctionImport>
+                <EntitySet Name="EmployeeSet" EntityType="timetracker.srv.service.TIME_TRACKER_SRV.EmployeeSet"/>
+                <EntitySet Name="Actors" EntityType="timetracker.srv.service.TIME_TRACKER_SRV.Actors"/>
+                <EntitySet Name="PunchingDetails" EntityType="timetracker.srv.service.TIME_TRACKER_SRV.PunchingDetails"/>
+                <EntitySet Name="LeaveBalances" EntityType="timetracker.srv.service.TIME_TRACKER_SRV.LeaveBalances"/>
+                <EntitySet Name="LeaveRequests" EntityType="timetracker.srv.service.TIME_TRACKER_SRV.LeaveRequests"/>
+                <EntitySet Name="TimeTrackerView" EntityType="timetracker.srv.service.TIME_TRACKER_SRV.TimeTrackerView"/>
+                <FunctionImport Name="TimeTrackerView_draftPrepare" EntitySet="TimeTrackerView" ReturnType="timetracker.srv.service.TIME_TRACKER_SRV.TimeTrackerView" m:HttpMethod="POST" sap:action-for="timetracker.srv.service.TIME_TRACKER_SRV.TimeTrackerView">
+                    <Parameter Name="EMP_ID" Type="Edm.Guid" Nullable="false" Mode="In"/>
+                    <Parameter Name="IsActiveEntity" Type="Edm.Boolean" Nullable="false" Mode="In"/>
+                    <Parameter Name="SideEffectsQualifier" Type="Edm.String" Mode="In" Nullable="true"/>
+                </FunctionImport>
+                <FunctionImport Name="TimeTrackerView_draftActivate" EntitySet="TimeTrackerView" ReturnType="timetracker.srv.service.TIME_TRACKER_SRV.TimeTrackerView" m:HttpMethod="POST" sap:action-for="timetracker.srv.service.TIME_TRACKER_SRV.TimeTrackerView">
+                    <Parameter Name="EMP_ID" Type="Edm.Guid" Nullable="false" Mode="In"/>
+                    <Parameter Name="IsActiveEntity" Type="Edm.Boolean" Nullable="false" Mode="In"/>
+                </FunctionImport>
+                <FunctionImport Name="TimeTrackerView_draftEdit" EntitySet="TimeTrackerView" ReturnType="timetracker.srv.service.TIME_TRACKER_SRV.TimeTrackerView" m:HttpMethod="POST" sap:action-for="timetracker.srv.service.TIME_TRACKER_SRV.TimeTrackerView">
+                    <Parameter Name="EMP_ID" Type="Edm.Guid" Nullable="false" Mode="In"/>
+                    <Parameter Name="IsActiveEntity" Type="Edm.Boolean" Nullable="false" Mode="In"/>
+                    <Parameter Name="PreserveChanges" Type="Edm.Boolean" Mode="In" Nullable="true"/>
+                </FunctionImport>
+                <EntitySet Name="DraftAdministrativeData" EntityType="timetracker.srv.service.TIME_TRACKER_SRV.DraftAdministrativeData"/>
+                <FunctionImport Name="GetLoggedInUser" ReturnType="timetracker.srv.service.TIME_TRACKER_SRV.object" m:HttpMethod="GET">
+                    <Parameter Name="Email" Type="Edm.String" Mode="In" Nullable="true"/>
+                </FunctionImport>
+                <FunctionImport Name="EmployeeF4" ReturnType="timetracker.srv.service.TIME_TRACKER_SRV.object" m:HttpMethod="GET"/>
+                <FunctionImport Name="Punch" ReturnType="timetracker.srv.service.TIME_TRACKER_SRV.object" m:HttpMethod="POST">
+                    <Parameter Name="Action" Type="Edm.String" Mode="In" Nullable="true"/>
+                    <Parameter Name="EmpId" Type="Edm.String" Mode="In" Nullable="true"/>
+                </FunctionImport>
+                <FunctionImport Name="ApproveLeave" ReturnType="timetracker.srv.service.TIME_TRACKER_SRV.object" m:HttpMethod="POST">
+                    <Parameter Name="LeaveRequestId" Type="Edm.String" Mode="In" Nullable="true"/>
+                    <Parameter Name="LeaveType" Type="Edm.String" Mode="In" Nullable="true"/>
+                    <Parameter Name="EmpId" Type="Edm.String" Mode="In" Nullable="true"/>
+                </FunctionImport>
+                <FunctionImport Name="RejectLeave" ReturnType="timetracker.srv.service.TIME_TRACKER_SRV.object" m:HttpMethod="POST">
+                    <Parameter Name="LeaveRequestId" Type="Edm.String" Mode="In" Nullable="true"/>
+                    <Parameter Name="LeaveType" Type="Edm.String" Mode="In" Nullable="true"/>
+                    <Parameter Name="EmpId" Type="Edm.String" Mode="In" Nullable="true"/>
+                </FunctionImport>
+                <AssociationSet Name="Employees_PUNCHING_DATA" Association="timetracker.srv.service.TIME_TRACKER_SRV.Employees_PUNCHING_DATA">
+                    <End Role="Employees" EntitySet="Employees"/>
+                    <End Role="PunchingDetails" EntitySet="PunchingDetails"/>
+                </AssociationSet>
+                <AssociationSet Name="Employees_DraftAdministrativeData" Association="timetracker.srv.service.TIME_TRACKER_SRV.Employees_DraftAdministrativeData">
+                    <End Role="Employees" EntitySet="Employees"/>
+                    <End Role="DraftAdministrativeData" EntitySet="DraftAdministrativeData"/>
+                </AssociationSet>
+                <AssociationSet Name="Employees_SiblingEntity" Association="timetracker.srv.service.TIME_TRACKER_SRV.Employees_SiblingEntity">
+                    <End Role="Employees" EntitySet="Employees"/>
+                    <End Role="Employees1" EntitySet="Employees"/>
+                </AssociationSet>
+                <AssociationSet Name="EmployeeSet_PUNCHING_DATA" Association="timetracker.srv.service.TIME_TRACKER_SRV.EmployeeSet_PUNCHING_DATA">
+                    <End Role="EmployeeSet" EntitySet="EmployeeSet"/>
+                    <End Role="PunchingDetails" EntitySet="PunchingDetails"/>
+                </AssociationSet>
+                <AssociationSet Name="PunchingDetails_EMP_CODE" Association="timetracker.srv.service.TIME_TRACKER_SRV.PunchingDetails_EMP_CODE">
+                    <End Role="PunchingDetails" EntitySet="PunchingDetails"/>
+                    <End Role="EmployeeSet" EntitySet="EmployeeSet"/>
+                </AssociationSet>
+                <AssociationSet Name="LeaveBalances_EMP" Association="timetracker.srv.service.TIME_TRACKER_SRV.LeaveBalances_EMP">
+                    <End Role="LeaveBalances" EntitySet="LeaveBalances"/>
+                    <End Role="EmployeeSet" EntitySet="EmployeeSet"/>
+                </AssociationSet>
+                <AssociationSet Name="LeaveRequests_APPLIED_BY" Association="timetracker.srv.service.TIME_TRACKER_SRV.LeaveRequests_APPLIED_BY">
+                    <End Role="LeaveRequests" EntitySet="LeaveRequests"/>
+                    <End Role="EmployeeSet" EntitySet="EmployeeSet"/>
+                </AssociationSet>
+                <AssociationSet Name="TimeTrackerView_PUNCHING_DATA" Association="timetracker.srv.service.TIME_TRACKER_SRV.TimeTrackerView_PUNCHING_DATA">
+                    <End Role="TimeTrackerView" EntitySet="TimeTrackerView"/>
+                    <End Role="PunchingDetails" EntitySet="PunchingDetails"/>
+                </AssociationSet>
+                <AssociationSet Name="TimeTrackerView_DraftAdministrativeData" Association="timetracker.srv.service.TIME_TRACKER_SRV.TimeTrackerView_DraftAdministrativeData">
+                    <End Role="TimeTrackerView" EntitySet="TimeTrackerView"/>
+                    <End Role="DraftAdministrativeData" EntitySet="DraftAdministrativeData"/>
+                </AssociationSet>
+                <AssociationSet Name="TimeTrackerView_SiblingEntity" Association="timetracker.srv.service.TIME_TRACKER_SRV.TimeTrackerView_SiblingEntity">
+                    <End Role="TimeTrackerView" EntitySet="TimeTrackerView"/>
+                    <End Role="TimeTrackerView1" EntitySet="TimeTrackerView"/>
+                </AssociationSet>
+            </EntityContainer>
+            <EntityType Name="Employees">
+                <Key>
+                    <PropertyRef Name="EMP_ID"/>
+                    <PropertyRef Name="IsActiveEntity"/>
+                </Key>
+                <Property Name="EMP_ID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="FIRST_NAME" Type="Edm.String"/>
+                <Property Name="LAST_NAME" Type="Edm.String"/>
+                <Property Name="GENDER" Type="Edm.String"/>
+                <Property Name="EMAIL" Type="Edm.String"/>
+                <Property Name="LAUNCHPAD_USER" Type="Edm.String"/>
+                <Property Name="EXPERIENCE" Type="Edm.Int32"/>
+                <Property Name="DESIGNATION" Type="Edm.String"/>
+                <Property Name="MODULE" Type="Edm.String"/>
+                <Property Name="MODULE_TYPE" Type="Edm.String"/>
+                <Property Name="PHONE_NO" Type="Edm.Int64"/>
+                <NavigationProperty Name="PUNCHING_DATA" Relationship="timetracker.srv.service.TIME_TRACKER_SRV.Employees_PUNCHING_DATA" FromRole="Employees" ToRole="PunchingDetails"/>
+                <Property Name="QR_CODE" Type="Edm.String"/>
+                <Property Name="IsActiveEntity" Type="Edm.Boolean" Nullable="false"/>
+                <Property Name="HasActiveEntity" Type="Edm.Boolean" Nullable="false"/>
+                <Property Name="HasDraftEntity" Type="Edm.Boolean" Nullable="false"/>
+                <NavigationProperty Name="DraftAdministrativeData" Relationship="timetracker.srv.service.TIME_TRACKER_SRV.Employees_DraftAdministrativeData" FromRole="Employees" ToRole="DraftAdministrativeData"/>
+                <Property Name="DraftAdministrativeData_DraftUUID" Type="Edm.Guid"/>
+                <NavigationProperty Name="SiblingEntity" Relationship="timetracker.srv.service.TIME_TRACKER_SRV.Employees_SiblingEntity" FromRole="Employees" ToRole="Employees1"/>
+            </EntityType>
+            <EntityType Name="EmployeeSet">
+                <Key>
+                    <PropertyRef Name="EMP_ID"/>
+                </Key>
+                <Property Name="EMP_ID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="FIRST_NAME" Type="Edm.String"/>
+                <Property Name="LAST_NAME" Type="Edm.String"/>
+                <Property Name="GENDER" Type="Edm.String"/>
+                <Property Name="EMAIL" Type="Edm.String"/>
+                <Property Name="LAUNCHPAD_USER" Type="Edm.String"/>
+                <Property Name="EXPERIENCE" Type="Edm.Int32"/>
+                <Property Name="DESIGNATION" Type="Edm.String"/>
+                <Property Name="MODULE" Type="Edm.String"/>
+                <Property Name="MODULE_TYPE" Type="Edm.String"/>
+                <Property Name="PHONE_NO" Type="Edm.Int64"/>
+                <NavigationProperty Name="PUNCHING_DATA" Relationship="timetracker.srv.service.TIME_TRACKER_SRV.EmployeeSet_PUNCHING_DATA" FromRole="EmployeeSet" ToRole="PunchingDetails"/>
+                <Property Name="QR_CODE" Type="Edm.String"/>
+            </EntityType>
+            <EntityType Name="Actors">
+                <Key>
+                    <PropertyRef Name="ACTOR_ID"/>
+                </Key>
+                <Property Name="ACTOR_ID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="NAME" Type="Edm.String"/>
+                <Property Name="IS_ACTIVE" Type="Edm.Boolean"/>
+            </EntityType>
+            <EntityType Name="PunchingDetails">
+                <Key>
+                    <PropertyRef Name="EMP_CODE_EMP_ID"/>
+                    <PropertyRef Name="PUNCH_DATE"/>
+                </Key>
+                <NavigationProperty Name="EMP_CODE" Relationship="timetracker.srv.service.TIME_TRACKER_SRV.PunchingDetails_EMP_CODE" FromRole="PunchingDetails" ToRole="EmployeeSet"/>
+                <Property Name="EMP_CODE_EMP_ID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="PUNCH_DATE" Type="Edm.String" Nullable="false"/>
+                <Property Name="PUNCH_IN" Type="Edm.String"/>
+                <Property Name="PUNCH_OUT" Type="Edm.String"/>
+                <Property Name="ARRIVAL_STATUS" Type="Edm.String"/>
+                <Property Name="CRITICALITY" Type="Edm.Int32"/>
+            </EntityType>
+            <EntityType Name="LeaveBalances">
+                <Key>
+                    <PropertyRef Name="LEAVE_BALANCE_ID"/>
+                </Key>
+                <Property Name="LEAVE_BALANCE_ID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="TOTAL_LEAVE_COUNT" Type="Edm.Int32"/>
+                <Property Name="AVAILABLE_LEAVE_COUNT" Type="Edm.Int32"/>
+                <NavigationProperty Name="EMP" Relationship="timetracker.srv.service.TIME_TRACKER_SRV.LeaveBalances_EMP" FromRole="LeaveBalances" ToRole="EmployeeSet"/>
+                <Property Name="EMP_EMP_ID" Type="Edm.Guid"/>
+            </EntityType>
+            <EntityType Name="LeaveRequests">
+                <Key>
+                    <PropertyRef Name="LEAVE_REQUEST_ID"/>
+                </Key>
+                <Property Name="LEAVE_REQUEST_ID" Type="Edm.Guid" Nullable="false"/>
+                <NavigationProperty Name="APPLIED_BY" Relationship="timetracker.srv.service.TIME_TRACKER_SRV.LeaveRequests_APPLIED_BY" FromRole="LeaveRequests" ToRole="EmployeeSet"/>
+                <Property Name="APPLIED_BY_EMP_ID" Type="Edm.Guid"/>
+                <Property Name="FROM_DATE" Type="Edm.String"/>
+                <Property Name="TO_DATE" Type="Edm.String"/>
+                <Property Name="TYPE" Type="Edm.String"/>
+                <Property Name="PRIORITY" Type="Edm.String"/>
+                <Property Name="STATUS" Type="Edm.String"/>
+                <Property Name="REASON" Type="Edm.String"/>
+            </EntityType>
+            <EntityType Name="TimeTrackerView">
+                <Key>
+                    <PropertyRef Name="EMP_ID"/>
+                    <PropertyRef Name="IsActiveEntity"/>
+                </Key>
+                <Property Name="EMP_ID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="FIRST_NAME" Type="Edm.String"/>
+                <Property Name="LAST_NAME" Type="Edm.String"/>
+                <Property Name="GENDER" Type="Edm.String"/>
+                <Property Name="EMAIL" Type="Edm.String"/>
+                <Property Name="LAUNCHPAD_USER" Type="Edm.String"/>
+                <Property Name="EXPERIENCE" Type="Edm.Int32"/>
+                <Property Name="DESIGNATION" Type="Edm.String"/>
+                <Property Name="MODULE" Type="Edm.String"/>
+                <Property Name="MODULE_TYPE" Type="Edm.String"/>
+                <Property Name="PHONE_NO" Type="Edm.Int64"/>
+                <NavigationProperty Name="PUNCHING_DATA" Relationship="timetracker.srv.service.TIME_TRACKER_SRV.TimeTrackerView_PUNCHING_DATA" FromRole="TimeTrackerView" ToRole="PunchingDetails"/>
+                <Property Name="IsActiveEntity" Type="Edm.Boolean" Nullable="false"/>
+                <Property Name="HasActiveEntity" Type="Edm.Boolean" Nullable="false"/>
+                <Property Name="HasDraftEntity" Type="Edm.Boolean" Nullable="false"/>
+                <NavigationProperty Name="DraftAdministrativeData" Relationship="timetracker.srv.service.TIME_TRACKER_SRV.TimeTrackerView_DraftAdministrativeData" FromRole="TimeTrackerView" ToRole="DraftAdministrativeData"/>
+                <Property Name="DraftAdministrativeData_DraftUUID" Type="Edm.Guid"/>
+                <NavigationProperty Name="SiblingEntity" Relationship="timetracker.srv.service.TIME_TRACKER_SRV.TimeTrackerView_SiblingEntity" FromRole="TimeTrackerView" ToRole="TimeTrackerView1"/>
+            </EntityType>
+            <EntityType Name="DraftAdministrativeData">
+                <Key>
+                    <PropertyRef Name="DraftUUID"/>
+                </Key>
+                <Property Name="DraftUUID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="CreationDateTime" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="CreatedByUser" Type="Edm.String" MaxLength="256"/>
+                <Property Name="DraftIsCreatedByMe" Type="Edm.Boolean"/>
+                <Property Name="LastChangeDateTime" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="LastChangedByUser" Type="Edm.String" MaxLength="256"/>
+                <Property Name="InProcessByUser" Type="Edm.String" MaxLength="256"/>
+                <Property Name="DraftIsProcessedByMe" Type="Edm.Boolean"/>
+            </EntityType>
+            <ComplexType Name="object"/>
+            <Association Name="Employees_PUNCHING_DATA">
+                <End Role="Employees" Type="timetracker.srv.service.TIME_TRACKER_SRV.Employees" Multiplicity="*"/>
+                <End Role="PunchingDetails" Type="timetracker.srv.service.TIME_TRACKER_SRV.PunchingDetails" Multiplicity="*"/>
+            </Association>
+            <Association Name="Employees_DraftAdministrativeData">
+                <End Role="Employees" Type="timetracker.srv.service.TIME_TRACKER_SRV.Employees" Multiplicity="*"/>
+                <End Role="DraftAdministrativeData" Type="timetracker.srv.service.TIME_TRACKER_SRV.DraftAdministrativeData" Multiplicity="0..1"/>
+                <ReferentialConstraint>
+                    <Principal Role="DraftAdministrativeData">
+                        <PropertyRef Name="DraftUUID"/>
+                    </Principal>
+                    <Dependent Role="Employees">
+                        <PropertyRef Name="DraftAdministrativeData_DraftUUID"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="Employees_SiblingEntity">
+                <End Role="Employees" Type="timetracker.srv.service.TIME_TRACKER_SRV.Employees" Multiplicity="*"/>
+                <End Role="Employees1" Type="timetracker.srv.service.TIME_TRACKER_SRV.Employees" Multiplicity="0..1"/>
+            </Association>
+            <Association Name="EmployeeSet_PUNCHING_DATA">
+                <End Role="EmployeeSet" Type="timetracker.srv.service.TIME_TRACKER_SRV.EmployeeSet" Multiplicity="*"/>
+                <End Role="PunchingDetails" Type="timetracker.srv.service.TIME_TRACKER_SRV.PunchingDetails" Multiplicity="*"/>
+            </Association>
+            <Association Name="PunchingDetails_EMP_CODE">
+                <End Role="PunchingDetails" Type="timetracker.srv.service.TIME_TRACKER_SRV.PunchingDetails" Multiplicity="*"/>
+                <End Role="EmployeeSet" Type="timetracker.srv.service.TIME_TRACKER_SRV.EmployeeSet" Multiplicity="0..1"/>
+                <ReferentialConstraint>
+                    <Principal Role="EmployeeSet">
+                        <PropertyRef Name="EMP_ID"/>
+                    </Principal>
+                    <Dependent Role="PunchingDetails">
+                        <PropertyRef Name="EMP_CODE_EMP_ID"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="LeaveBalances_EMP">
+                <End Role="LeaveBalances" Type="timetracker.srv.service.TIME_TRACKER_SRV.LeaveBalances" Multiplicity="*"/>
+                <End Role="EmployeeSet" Type="timetracker.srv.service.TIME_TRACKER_SRV.EmployeeSet" Multiplicity="0..1"/>
+                <ReferentialConstraint>
+                    <Principal Role="EmployeeSet">
+                        <PropertyRef Name="EMP_ID"/>
+                    </Principal>
+                    <Dependent Role="LeaveBalances">
+                        <PropertyRef Name="EMP_EMP_ID"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="LeaveRequests_APPLIED_BY">
+                <End Role="LeaveRequests" Type="timetracker.srv.service.TIME_TRACKER_SRV.LeaveRequests" Multiplicity="*"/>
+                <End Role="EmployeeSet" Type="timetracker.srv.service.TIME_TRACKER_SRV.EmployeeSet" Multiplicity="0..1"/>
+                <ReferentialConstraint>
+                    <Principal Role="EmployeeSet">
+                        <PropertyRef Name="EMP_ID"/>
+                    </Principal>
+                    <Dependent Role="LeaveRequests">
+                        <PropertyRef Name="APPLIED_BY_EMP_ID"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="TimeTrackerView_PUNCHING_DATA">
+                <End Role="TimeTrackerView" Type="timetracker.srv.service.TIME_TRACKER_SRV.TimeTrackerView" Multiplicity="*"/>
+                <End Role="PunchingDetails" Type="timetracker.srv.service.TIME_TRACKER_SRV.PunchingDetails" Multiplicity="*"/>
+            </Association>
+            <Association Name="TimeTrackerView_DraftAdministrativeData">
+                <End Role="TimeTrackerView" Type="timetracker.srv.service.TIME_TRACKER_SRV.TimeTrackerView" Multiplicity="*"/>
+                <End Role="DraftAdministrativeData" Type="timetracker.srv.service.TIME_TRACKER_SRV.DraftAdministrativeData" Multiplicity="0..1"/>
+                <ReferentialConstraint>
+                    <Principal Role="DraftAdministrativeData">
+                        <PropertyRef Name="DraftUUID"/>
+                    </Principal>
+                    <Dependent Role="TimeTrackerView">
+                        <PropertyRef Name="DraftAdministrativeData_DraftUUID"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="TimeTrackerView_SiblingEntity">
+                <End Role="TimeTrackerView" Type="timetracker.srv.service.TIME_TRACKER_SRV.TimeTrackerView" Multiplicity="*"/>
+                <End Role="TimeTrackerView1" Type="timetracker.srv.service.TIME_TRACKER_SRV.TimeTrackerView" Multiplicity="0..1"/>
+            </Association>
+            <Annotations Target="timetracker.srv.service.TIME_TRACKER_SRV.Employees" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.SelectionFields">
+                    <Collection>
+                        <PropertyPath>FIRST_NAME</PropertyPath>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.LineItem">
+                    <Collection>
+                        <Record Type="UI.DataFieldForAnnotation">
+                            <PropertyValue Property="Label" String="Name"/>
+                            <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#FullName"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="LAST_NAME"/>
+                            <Annotation Term="HTML5.CssDefaults">
+                                <Record Type="HTML5.CssDefaultsType">
+                                    <PropertyValue Property="width" String="20%"/>
+                                </Record>
+                            </Annotation>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Experience (in years)"/>
+                            <PropertyValue Property="Value" Path="EXPERIENCE"/>
+                            <Annotation Term="HTML5.CssDefaults">
+                                <Record Type="HTML5.CssDefaultsType">
+                                    <PropertyValue Property="width" String="20%"/>
+                                </Record>
+                            </Annotation>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="EMAIL"/>
+                            <Annotation Term="HTML5.CssDefaults">
+                                <Record Type="HTML5.CssDefaultsType">
+                                    <PropertyValue Property="width" String="20%"/>
+                                </Record>
+                            </Annotation>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="MODULE"/>
+                            <Annotation Term="HTML5.CssDefaults">
+                                <Record Type="HTML5.CssDefaultsType">
+                                    <PropertyValue Property="width" String="20%"/>
+                                </Record>
+                            </Annotation>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="MODULE_TYPE"/>
+                            <Annotation Term="HTML5.CssDefaults">
+                                <Record Type="HTML5.CssDefaultsType">
+                                    <PropertyValue Property="width" String="20%"/>
+                                </Record>
+                            </Annotation>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.HeaderInfo">
+                    <Record Type="UI.HeaderInfoType">
+                        <PropertyValue Property="TypeName" String="Employee"/>
+                        <PropertyValue Property="TypeNamePlural" String="Employees"/>
+                        <PropertyValue Property="Title">
+                            <Record Type="UI.DataField">
+                                <PropertyValue Property="Value" Path="FIRST_NAME"/>
+                            </Record>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.FieldGroup" Qualifier="GeneratedGroup1">
+                    <Record Type="UI.FieldGroupType">
+                        <PropertyValue Property="Data">
+                            <Collection>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="First Name"/>
+                                    <PropertyValue Property="Value" Path="FIRST_NAME"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="Last Name"/>
+                                    <PropertyValue Property="Value" Path="LAST_NAME"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="Gender"/>
+                                    <PropertyValue Property="Value" Path="GENDER"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="Email"/>
+                                    <PropertyValue Property="Value" Path="EMAIL"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="Launchpad User"/>
+                                    <PropertyValue Property="Value" Path="LAUNCHPAD_USER"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="Phone"/>
+                                    <PropertyValue Property="Value" Path="PHONE_NO"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="Experience (in years)"/>
+                                    <PropertyValue Property="Value" Path="EXPERIENCE"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="Designation"/>
+                                    <PropertyValue Property="Value" Path="DESIGNATION"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="Module"/>
+                                    <PropertyValue Property="Value" Path="MODULE"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="Module Type"/>
+                                    <PropertyValue Property="Value" Path="MODULE_TYPE"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.Facets">
+                    <Collection>
+                        <Record Type="UI.ReferenceFacet">
+                            <PropertyValue Property="ID" String="IdeneralInformation"/>
+                            <PropertyValue Property="Label" String="General Information"/>
+                            <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#GeneratedGroup1"/>
+                        </Record>
+                        <Record Type="UI.ReferenceFacet">
+                            <PropertyValue Property="Label" String="Punching Details"/>
+                            <PropertyValue Property="ID" String="IdPunchingDetails"/>
+                            <PropertyValue Property="Target" AnnotationPath="PUNCHING_DATA/@UI.LineItem#PunchingDetails"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="timetracker.srv.service.TIME_TRACKER_SRV.EntityContainer/Employees" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.DraftRoot">
+                    <Record Type="Common.DraftRootType">
+                        <PropertyValue Property="ActivationAction" String="timetracker.srv.service.TIME_TRACKER_SRV.EntityContainer/Employees_draftActivate"/>
+                        <PropertyValue Property="EditAction" String="timetracker.srv.service.TIME_TRACKER_SRV.EntityContainer/Employees_draftEdit"/>
+                        <PropertyValue Property="PreparationAction" String="timetracker.srv.service.TIME_TRACKER_SRV.EntityContainer/Employees_draftPrepare"/>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="timetracker.srv.service.TIME_TRACKER_SRV.Employees/EMP_ID" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Employee Id"/>
+                <Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+            </Annotations>
+            <Annotations Target="timetracker.srv.service.TIME_TRACKER_SRV.Employees/FIRST_NAME" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Name"/>
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="CollectionPath" String="Employees"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="FIRST_NAME"/>
+                                    <PropertyValue Property="ValueListProperty" String="FIRST_NAME"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="LAST_NAME"/>
+                                    <PropertyValue Property="ValueListProperty" String="LAST_NAME"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="timetracker.srv.service.TIME_TRACKER_SRV.Employees/LAST_NAME" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Last Name"/>
+            </Annotations>
+            <Annotations Target="timetracker.srv.service.TIME_TRACKER_SRV.Employees/GENDER" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Gender"/>
+            </Annotations>
+            <Annotations Target="timetracker.srv.service.TIME_TRACKER_SRV.Employees/EMAIL" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Email"/>
+            </Annotations>
+            <Annotations Target="timetracker.srv.service.TIME_TRACKER_SRV.Employees/LAUNCHPAD_USER" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Launchpad User"/>
+            </Annotations>
+            <Annotations Target="timetracker.srv.service.TIME_TRACKER_SRV.Employees/EXPERIENCE" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Experience"/>
+            </Annotations>
+            <Annotations Target="timetracker.srv.service.TIME_TRACKER_SRV.Employees/DESIGNATION" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Designation"/>
+            </Annotations>
+            <Annotations Target="timetracker.srv.service.TIME_TRACKER_SRV.Employees/MODULE" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Module"/>
+            </Annotations>
+            <Annotations Target="timetracker.srv.service.TIME_TRACKER_SRV.Employees/MODULE_TYPE" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Module Type"/>
+            </Annotations>
+            <Annotations Target="timetracker.srv.service.TIME_TRACKER_SRV.Employees/PHONE_NO" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Phone No"/>
+            </Annotations>
+            <Annotations Target="timetracker.srv.service.TIME_TRACKER_SRV.Employees/PUNCHING_DATA" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Punching Details"/>
+            </Annotations>
+            <Annotations Target="timetracker.srv.service.TIME_TRACKER_SRV.Employees/QR_CODE" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="QR Code"/>
+            </Annotations>
+            <Annotations Target="timetracker.srv.service.TIME_TRACKER_SRV.Employees/IsActiveEntity" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.Hidden" Bool="true"/>
+            </Annotations>
+            <Annotations Target="timetracker.srv.service.TIME_TRACKER_SRV.Employees/HasActiveEntity" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.Hidden" Bool="true"/>
+            </Annotations>
+            <Annotations Target="timetracker.srv.service.TIME_TRACKER_SRV.Employees/HasDraftEntity" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.Hidden" Bool="true"/>
+            </Annotations>
+            <Annotations Target="timetracker.srv.service.TIME_TRACKER_SRV.Employees/DraftAdministrativeData" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.Hidden" Bool="true"/>
+            </Annotations>
+            <Annotations Target="timetracker.srv.service.TIME_TRACKER_SRV.Employees/DraftAdministrativeData_DraftUUID" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.Hidden" Bool="true"/>
+            </Annotations>
+            <Annotations Target="timetracker.srv.service.TIME_TRACKER_SRV.EmployeeSet/EMP_ID" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Employee Id"/>
+                <Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+            </Annotations>
+            <Annotations Target="timetracker.srv.service.TIME_TRACKER_SRV.EmployeeSet/FIRST_NAME" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="First Name"/>
+            </Annotations>
+            <Annotations Target="timetracker.srv.service.TIME_TRACKER_SRV.EmployeeSet/LAST_NAME" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Last Name"/>
+            </Annotations>
+            <Annotations Target="timetracker.srv.service.TIME_TRACKER_SRV.EmployeeSet/GENDER" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Gender"/>
+            </Annotations>
+            <Annotations Target="timetracker.srv.service.TIME_TRACKER_SRV.EmployeeSet/EMAIL" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Email"/>
+            </Annotations>
+            <Annotations Target="timetracker.srv.service.TIME_TRACKER_SRV.EmployeeSet/LAUNCHPAD_USER" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Launchpad User"/>
+            </Annotations>
+            <Annotations Target="timetracker.srv.service.TIME_TRACKER_SRV.EmployeeSet/EXPERIENCE" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Experience"/>
+            </Annotations>
+            <Annotations Target="timetracker.srv.service.TIME_TRACKER_SRV.EmployeeSet/DESIGNATION" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Designation"/>
+            </Annotations>
+            <Annotations Target="timetracker.srv.service.TIME_TRACKER_SRV.EmployeeSet/MODULE" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Module"/>
+            </Annotations>
+            <Annotations Target="timetracker.srv.service.TIME_TRACKER_SRV.EmployeeSet/MODULE_TYPE" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Module Type"/>
+            </Annotations>
+            <Annotations Target="timetracker.srv.service.TIME_TRACKER_SRV.EmployeeSet/PHONE_NO" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Phone No"/>
+            </Annotations>
+            <Annotations Target="timetracker.srv.service.TIME_TRACKER_SRV.EmployeeSet/PUNCHING_DATA" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Punching Details"/>
+            </Annotations>
+            <Annotations Target="timetracker.srv.service.TIME_TRACKER_SRV.EmployeeSet/QR_CODE" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="QR Code"/>
+            </Annotations>
+            <Annotations Target="timetracker.srv.service.TIME_TRACKER_SRV.Actors/ACTOR_ID" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+            </Annotations>
+            <Annotations Target="timetracker.srv.service.TIME_TRACKER_SRV.PunchingDetails" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.LineItem" Qualifier="PunchingDetails">
+                    <Collection>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Punch Date"/>
+                            <PropertyValue Property="Value" Path="PUNCH_DATE"/>
+                            <Annotation Term="HTML5.CssDefaults">
+                                <Record Type="HTML5.CssDefaultsType">
+                                    <PropertyValue Property="width" String="25%"/>
+                                </Record>
+                            </Annotation>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Punch In"/>
+                            <PropertyValue Property="Value" Path="PUNCH_IN"/>
+                            <Annotation Term="HTML5.CssDefaults">
+                                <Record Type="HTML5.CssDefaultsType">
+                                    <PropertyValue Property="width" String="25%"/>
+                                </Record>
+                            </Annotation>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Punch Out"/>
+                            <PropertyValue Property="Value" Path="PUNCH_OUT"/>
+                            <Annotation Term="HTML5.CssDefaults">
+                                <Record Type="HTML5.CssDefaultsType">
+                                    <PropertyValue Property="width" String="25%"/>
+                                </Record>
+                            </Annotation>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Arrival Status"/>
+                            <PropertyValue Property="Value" Path="ARRIVAL_STATUS"/>
+                            <PropertyValue Property="Criticality" Path="CRITICALITY"/>
+                            <Annotation Term="HTML5.CssDefaults">
+                                <Record Type="HTML5.CssDefaultsType">
+                                    <PropertyValue Property="width" String="25%"/>
+                                </Record>
+                            </Annotation>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.SelectionFields">
+                    <Collection>
+                        <PropertyPath>PUNCH_DATE</PropertyPath>
+                        <PropertyPath>ARRIVAL_STATUS</PropertyPath>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="timetracker.srv.service.TIME_TRACKER_SRV.EntityContainer/PunchingDetails" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Capabilities.DeleteRestrictions">
+                    <Record Type="Capabilities.DeleteRestrictionsType">
+                        <PropertyValue Property="Deletable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.InsertRestrictions">
+                    <Record Type="Capabilities.InsertRestrictionsType">
+                        <PropertyValue Property="Insertable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.UpdateRestrictions">
+                    <Record Type="Capabilities.UpdateRestrictionsType">
+                        <PropertyValue Property="Updatable" Bool="false"/>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="timetracker.srv.service.TIME_TRACKER_SRV.PunchingDetails/ARRIVAL_STATUS" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Core.Computed" Bool="true"/>
+            </Annotations>
+            <Annotations Target="timetracker.srv.service.TIME_TRACKER_SRV.PunchingDetails/CRITICALITY" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Core.Computed" Bool="true"/>
+            </Annotations>
+            <Annotations Target="timetracker.srv.service.TIME_TRACKER_SRV.LeaveBalances/LEAVE_BALANCE_ID" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+            </Annotations>
+            <Annotations Target="timetracker.srv.service.TIME_TRACKER_SRV.LeaveRequests/LEAVE_REQUEST_ID" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Leave Request Id"/>
+                <Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+            </Annotations>
+            <Annotations Target="timetracker.srv.service.TIME_TRACKER_SRV.LeaveRequests/APPLIED_BY" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Applied By"/>
+            </Annotations>
+            <Annotations Target="timetracker.srv.service.TIME_TRACKER_SRV.LeaveRequests/APPLIED_BY_EMP_ID" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Applied By"/>
+            </Annotations>
+            <Annotations Target="timetracker.srv.service.TIME_TRACKER_SRV.LeaveRequests/FROM_DATE" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="From Date"/>
+            </Annotations>
+            <Annotations Target="timetracker.srv.service.TIME_TRACKER_SRV.LeaveRequests/TO_DATE" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="To Date"/>
+            </Annotations>
+            <Annotations Target="timetracker.srv.service.TIME_TRACKER_SRV.LeaveRequests/TYPE" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Type"/>
+            </Annotations>
+            <Annotations Target="timetracker.srv.service.TIME_TRACKER_SRV.LeaveRequests/PRIORITY" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Priority"/>
+            </Annotations>
+            <Annotations Target="timetracker.srv.service.TIME_TRACKER_SRV.LeaveRequests/STATUS" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Status"/>
+            </Annotations>
+            <Annotations Target="timetracker.srv.service.TIME_TRACKER_SRV.LeaveRequests/REASON" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Reason"/>
+            </Annotations>
+            <Annotations Target="timetracker.srv.service.TIME_TRACKER_SRV.TimeTrackerView" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.SelectionFields">
+                    <Collection>
+                        <PropertyPath>FIRST_NAME</PropertyPath>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.LineItem">
+                    <Collection>
+                        <Record Type="UI.DataFieldForAnnotation">
+                            <PropertyValue Property="Label" String="Name"/>
+                            <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#FullName"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="LAST_NAME"/>
+                            <Annotation Term="HTML5.CssDefaults">
+                                <Record Type="HTML5.CssDefaultsType">
+                                    <PropertyValue Property="width" String="20%"/>
+                                </Record>
+                            </Annotation>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Experience (in years)"/>
+                            <PropertyValue Property="Value" Path="EXPERIENCE"/>
+                            <Annotation Term="HTML5.CssDefaults">
+                                <Record Type="HTML5.CssDefaultsType">
+                                    <PropertyValue Property="width" String="20%"/>
+                                </Record>
+                            </Annotation>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="EMAIL"/>
+                            <Annotation Term="HTML5.CssDefaults">
+                                <Record Type="HTML5.CssDefaultsType">
+                                    <PropertyValue Property="width" String="20%"/>
+                                </Record>
+                            </Annotation>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="MODULE"/>
+                            <Annotation Term="HTML5.CssDefaults">
+                                <Record Type="HTML5.CssDefaultsType">
+                                    <PropertyValue Property="width" String="20%"/>
+                                </Record>
+                            </Annotation>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="MODULE_TYPE"/>
+                            <Annotation Term="HTML5.CssDefaults">
+                                <Record Type="HTML5.CssDefaultsType">
+                                    <PropertyValue Property="width" String="20%"/>
+                                </Record>
+                            </Annotation>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.HeaderInfo">
+                    <Record Type="UI.HeaderInfoType">
+                        <PropertyValue Property="TypeName" String="Employee"/>
+                        <PropertyValue Property="TypeNamePlural" String="Employees"/>
+                        <PropertyValue Property="Title">
+                            <Record Type="UI.DataField">
+                                <PropertyValue Property="Value" Path="FIRST_NAME"/>
+                            </Record>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.FieldGroup" Qualifier="GeneratedGroup1">
+                    <Record Type="UI.FieldGroupType">
+                        <PropertyValue Property="Data">
+                            <Collection>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="First Name"/>
+                                    <PropertyValue Property="Value" Path="FIRST_NAME"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="Last Name"/>
+                                    <PropertyValue Property="Value" Path="LAST_NAME"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="Gender"/>
+                                    <PropertyValue Property="Value" Path="GENDER"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="Email"/>
+                                    <PropertyValue Property="Value" Path="EMAIL"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="Launchpad User"/>
+                                    <PropertyValue Property="Value" Path="LAUNCHPAD_USER"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="Phone"/>
+                                    <PropertyValue Property="Value" Path="PHONE_NO"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="Experience (in years)"/>
+                                    <PropertyValue Property="Value" Path="EXPERIENCE"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="Designation"/>
+                                    <PropertyValue Property="Value" Path="DESIGNATION"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="Module"/>
+                                    <PropertyValue Property="Value" Path="MODULE"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="Module Type"/>
+                                    <PropertyValue Property="Value" Path="MODULE_TYPE"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.Facets">
+                    <Collection>
+                        <Record Type="UI.ReferenceFacet">
+                            <PropertyValue Property="ID" String="IdeneralInformation"/>
+                            <PropertyValue Property="Label" String="General Information"/>
+                            <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#GeneratedGroup1"/>
+                        </Record>
+                        <Record Type="UI.ReferenceFacet">
+                            <PropertyValue Property="Label" String="Punching Details"/>
+                            <PropertyValue Property="ID" String="IdPunchingDetails"/>
+                            <PropertyValue Property="Target" AnnotationPath="PUNCHING_DATA/@UI.LineItem#PunchingDetails"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="timetracker.srv.service.TIME_TRACKER_SRV.EntityContainer/TimeTrackerView" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.DraftRoot">
+                    <Record Type="Common.DraftRootType">
+                        <PropertyValue Property="ActivationAction" String="timetracker.srv.service.TIME_TRACKER_SRV.EntityContainer/TimeTrackerView_draftActivate"/>
+                        <PropertyValue Property="EditAction" String="timetracker.srv.service.TIME_TRACKER_SRV.EntityContainer/TimeTrackerView_draftEdit"/>
+                        <PropertyValue Property="PreparationAction" String="timetracker.srv.service.TIME_TRACKER_SRV.EntityContainer/TimeTrackerView_draftPrepare"/>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="timetracker.srv.service.TIME_TRACKER_SRV.TimeTrackerView/EMP_ID" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Employee Id"/>
+                <Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+            </Annotations>
+            <Annotations Target="timetracker.srv.service.TIME_TRACKER_SRV.TimeTrackerView/FIRST_NAME" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Name"/>
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="CollectionPath" String="Employees"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="FIRST_NAME"/>
+                                    <PropertyValue Property="ValueListProperty" String="FIRST_NAME"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="LAST_NAME"/>
+                                    <PropertyValue Property="ValueListProperty" String="LAST_NAME"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="timetracker.srv.service.TIME_TRACKER_SRV.TimeTrackerView/LAST_NAME" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Last Name"/>
+            </Annotations>
+            <Annotations Target="timetracker.srv.service.TIME_TRACKER_SRV.TimeTrackerView/GENDER" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Gender"/>
+            </Annotations>
+            <Annotations Target="timetracker.srv.service.TIME_TRACKER_SRV.TimeTrackerView/EMAIL" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Email"/>
+            </Annotations>
+            <Annotations Target="timetracker.srv.service.TIME_TRACKER_SRV.TimeTrackerView/LAUNCHPAD_USER" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Launchpad User"/>
+            </Annotations>
+            <Annotations Target="timetracker.srv.service.TIME_TRACKER_SRV.TimeTrackerView/EXPERIENCE" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Experience"/>
+            </Annotations>
+            <Annotations Target="timetracker.srv.service.TIME_TRACKER_SRV.TimeTrackerView/DESIGNATION" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Designation"/>
+            </Annotations>
+            <Annotations Target="timetracker.srv.service.TIME_TRACKER_SRV.TimeTrackerView/MODULE" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Module"/>
+            </Annotations>
+            <Annotations Target="timetracker.srv.service.TIME_TRACKER_SRV.TimeTrackerView/MODULE_TYPE" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Module Type"/>
+            </Annotations>
+            <Annotations Target="timetracker.srv.service.TIME_TRACKER_SRV.TimeTrackerView/PHONE_NO" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Phone No"/>
+            </Annotations>
+            <Annotations Target="timetracker.srv.service.TIME_TRACKER_SRV.TimeTrackerView/PUNCHING_DATA" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Punching Details"/>
+            </Annotations>
+            <Annotations Target="timetracker.srv.service.TIME_TRACKER_SRV.TimeTrackerView/IsActiveEntity" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.Hidden" Bool="true"/>
+            </Annotations>
+            <Annotations Target="timetracker.srv.service.TIME_TRACKER_SRV.TimeTrackerView/HasActiveEntity" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.Hidden" Bool="true"/>
+            </Annotations>
+            <Annotations Target="timetracker.srv.service.TIME_TRACKER_SRV.TimeTrackerView/HasDraftEntity" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.Hidden" Bool="true"/>
+            </Annotations>
+            <Annotations Target="timetracker.srv.service.TIME_TRACKER_SRV.TimeTrackerView/DraftAdministrativeData" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.Hidden" Bool="true"/>
+            </Annotations>
+            <Annotations Target="timetracker.srv.service.TIME_TRACKER_SRV.TimeTrackerView/DraftAdministrativeData_DraftUUID" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.Hidden" Bool="true"/>
+            </Annotations>
+            <Annotations Target="timetracker.srv.service.TIME_TRACKER_SRV.DraftAdministrativeData" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Draft_DraftAdministrativeData"/>
+            </Annotations>
+            <Annotations Target="timetracker.srv.service.TIME_TRACKER_SRV.DraftAdministrativeData/DraftUUID" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.Hidden" Bool="true"/>
+                <Annotation Term="Common.Label" String="Draft_DraftUUID"/>
+                <Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+            </Annotations>
+            <Annotations Target="timetracker.srv.service.TIME_TRACKER_SRV.DraftAdministrativeData/CreationDateTime" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Draft_CreationDateTime"/>
+            </Annotations>
+            <Annotations Target="timetracker.srv.service.TIME_TRACKER_SRV.DraftAdministrativeData/CreatedByUser" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Draft_CreatedByUser"/>
+            </Annotations>
+            <Annotations Target="timetracker.srv.service.TIME_TRACKER_SRV.DraftAdministrativeData/DraftIsCreatedByMe" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.Hidden" Bool="true"/>
+                <Annotation Term="Common.Label" String="Draft_DraftIsCreatedByMe"/>
+            </Annotations>
+            <Annotations Target="timetracker.srv.service.TIME_TRACKER_SRV.DraftAdministrativeData/LastChangeDateTime" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Draft_LastChangeDateTime"/>
+            </Annotations>
+            <Annotations Target="timetracker.srv.service.TIME_TRACKER_SRV.DraftAdministrativeData/LastChangedByUser" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Draft_LastChangedByUser"/>
+            </Annotations>
+            <Annotations Target="timetracker.srv.service.TIME_TRACKER_SRV.DraftAdministrativeData/InProcessByUser" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Draft_InProcessByUser"/>
+            </Annotations>
+            <Annotations Target="timetracker.srv.service.TIME_TRACKER_SRV.DraftAdministrativeData/DraftIsProcessedByMe" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.Hidden" Bool="true"/>
+                <Annotation Term="Common.Label" String="Draft_DraftIsProcessedByMe"/>
+            </Annotations>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

@@ -1,0 +1,163 @@
+<mvc:View
+    controllerName="ztimetracker.controller.View1"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+>
+    <Page
+        
+        id="page"
+        title="{i18n>title}"
+        
+    >
+        <Table
+            class="tbl"
+            width="70%"
+            items="{ActorsModel>/ActorsData}"
+            mode="SingleSelect"
+            id="actors"
+            itemPress="onChange"
+        >
+            <headerToolbar>
+                <Toolbar>
+                    <ToolbarSpacer />
+                    <!-- <ComboBox items="{ActorsModel>/Countries}">
+                        <core:Item text="{ActorsModel>name}" />
+                    </ComboBox> -->
+                    <Button
+                        text="Add"
+                        press="onAdd"
+                        type="Emphasized"
+                        icon="sap-icon://add"
+                    />
+                    <Button
+                        text="Delete"
+                        press="onDelete"
+                        type="Emphasized"
+                        icon="sap-icon://delete"
+                    />
+                </Toolbar>
+            </headerToolbar>
+            <columns>
+            <Column width="70%"><Text text="Name"></Text></Column>
+            <Column width="20%"><Text text="Active"></Text></Column>
+            <Column width="15%"><Text text="Actions"></Text></Column>
+            </columns>
+            <items>
+            <ColumnListItem >
+            <cells>
+            <Input
+                        value="{ActorsModel>NAME}"
+                        editable="{ActorsModel>editMode}"
+                    />
+                    <FlexBox >
+                    <ObjectStatus
+                        id="obj"
+                        class="sapUiTinyMargin"
+                        inverted="true"
+                        visible="{=${ActorsModel>editMode}? false: true}"
+                        text="{=${ActorsModel>IS_ACTIVE}? 'Active' : 'Inactive'}"
+                        state="{=${ActorsModel>IS_ACTIVE}? 'Success' : 'Error'}"
+                    />
+                    <ComboBox
+                        id="cbStatus"
+                        items="{ActorsModel>/Status}"
+                        selectedKey="{ActorsModel>sValue}"
+                        visible="{ActorsModel>editMode}"
+                    >
+                        <core:Item
+                            key="{ActorsModel>sKey}"
+                            text="{ActorsModel>sValue}"
+                        />
+                    </ComboBox>
+                    </FlexBox>
+                    <FlexBox>
+                    <core:Icon
+                        src="sap-icon://edit"
+                        press="onEdit"
+                        class="sapUiTinyMargin"
+                        visible="{=${ActorsModel>editMode}? false: true}"
+                    />
+                        <core:Icon
+                            src="sap-icon://save"
+                            press="onSave"
+                            class="sapUiTinyMargin"
+                            visible="{ActorsModel>editMode}"
+                        />
+                        <core:Icon
+                            src="sap-icon://sys-cancel"
+                            press="onCancel"
+                            class="sapUiTinyMargin"
+                            visible="{ActorsModel>editMode}"
+                        />
+                    </FlexBox>
+            </cells>
+            </ColumnListItem>
+            </items>
+            <!-- <CustomListItem>
+                <HBox justifyContent="SpaceBetween">
+                    <Label text="{ActorsModel>NAME}" class="sapUiTinyMargin" visible="{ActorsModel>nameInp}"/>
+                    <Input
+                        value="{ActorsModel>NAME}"
+                        editable="{ActorsModel>editMode}"
+                    />
+                    <ObjectStatus
+                        class="sapUiTinyMargin"
+                        inverted="true"
+                        visible="{=${ActorsModel>editMode}? false: true}"
+                        text="{=${ActorsModel>IS_ACTIVE}? 'Active' : 'In Active'}"
+                        state="{=${ActorsModel>IS_ACTIVE}? 'Success' : 'Error'}"
+                    />
+                    <ComboBox
+                        id="cbStatus"
+                        items="{ActorsModel>/Status}"
+                        selectedKey="{ActorsModel>sValue}"
+                        visible="{ActorsModel>editMode}"
+                    >
+                        <core:Item
+                            key="{ActorsModel>sKey}"
+                            text="{ActorsModel>sValue}"
+                        />
+                    </ComboBox>
+                    <core:Icon
+                        src="sap-icon://edit"
+                        press="onEdit"
+                        class="sapUiTinyMargin"
+                        visible="{=${ActorsModel>editMode}? false: true}"
+                    />
+                    <FlexBox visible="{ActorsModel>editMode}">
+                        <core:Icon
+                            src="sap-icon://save"
+                            press="onSave"
+                            class="sapUiTinyMargin"
+                            visible="{ActorsModel>editMode}"
+                        />
+                        <core:Icon
+                            src="sap-icon://sys-cancel"
+                            press="onCancel"
+                            class="sapUiTinyMargin"
+                            visible="{ActorsModel>editMode}"
+                        />
+                    </FlexBox>
+                </HBox>
+            </CustomListItem> -->
+            <!-- <ObjectListItem title="{ActorsModel>NAME}">
+                <firstStatus>
+                    <ObjectStatus
+                        inverted="true"
+                        text="{=${ActorsModel>IS_ACTIVE}? 'Active' : 'In Active'}"
+                        state="{=${ActorsModel>IS_ACTIVE}? 'Success' : 'Error'}"
+                    />
+                </firstStatus>
+                <secondStatus>
+                    <ObjectStatus
+                        inverted="true"
+                        icon="sap-icon://edit"
+                        press="onEdit"
+                    />
+                </secondStatus>
+            </ObjectListItem> -->
+        </Table>
+
+    </Page>
+</mvc:View>
