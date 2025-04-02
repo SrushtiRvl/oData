@@ -3,8 +3,9 @@
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m"
     xmlns:core="sap.ui.core"
+    xmlns:tnt="sap.tnt"
 >
-    <Page
+<Page
         
         id="page"
         title="{i18n>title}"
@@ -161,3 +162,98 @@
 
     </Page>
 </mvc:View>
+    <!-- <tnt:ToolPage id="app" class="sapUiDemoToolPage" sideExpanded="false">
+<tnt:header class="accbtncolor">
+<tnt:ToolHeader class="backColorBar backgroundWhite accbtncolor" id="headerMenu" height="100%">
+<Image src="{ path: 'appView>/logo', formatter : '.formatter.pictureUrl' }" width="auto" height="30px" press="onHomeClick"
+class="sapUiSmallMarginBeginEnd sapUiSmallMarginTop img_class">
+<layoutData>
+<OverflowToolbarLayoutData priority="NeverOverflow"/>
+</layoutData>
+</Image>
+<Button tooltip="{i18n>Catalog}" id="idCatelog" type="Transparent" press="onCatelogList" icon="sap-icon://notes"
+class="accountButton sapUiSmallMarginBegin cartButton ">
+<layoutData>
+<OverflowToolbarLayoutData priority="NeverOverflow"/>
+</layoutData>
+</Button>
+<Button tooltip="Free Text Items" id="idFreeText" type="Transparent" press="onFreeTextList" icon="sap-icon://bullet-text"
+class="accountButton sapUiSmallMarginBegin cartButton ">
+<layoutData>
+<OverflowToolbarLayoutData priority="NeverOverflow"/>
+</layoutData>
+</Button>
+
+
+comment
+<ToolbarSpacer visible="{=!${device>/system/phone}}" width="20%">-->
+<!-- <layoutData>-->
+<!-- <OverflowToolbarLayoutData priority="NeverOverflow"/>-->
+<!-- </layoutData>-->
+<!--</ToolbarSpacer>-->
+<!--    <MenuButton text="All" useDefaultActionOnly="true" class="allButton  sapUiTinyMarginTop allButtonMargin AllButtonMobile1" > -->
+<!--      <menu> -->
+<!--        <Menu itemSelected="onMenuAction"> -->
+         <!--<items> -->
+<!--            <MenuItem text="Administractive And Other Supplies" icon="sap-icon://eam-work-order"> -->
+<!--              <items> -->
+<!--                <MenuItem text="Administractive And Other Supplies" icon="sap-icon://add" /> -->
+<!--                <MenuItem text="Services" icon="sap-icon://less" /> -->
+<!--                <MenuItem text="Uncategorized Items" icon="sap-icon://decline" /> -->
+<!--                <MenuItem text="Wearing Parts, Consumable Material" icon="sap-icon://decline" /> -->
+<!--              </items> -->
+<!--            </MenuItem> -->
+<!--            <MenuItem text="Services" icon="sap-icon://crm-service-manager"> -->
+<!--              <items> -->
+<!--                <MenuItem text="square" icon="sap-icon://status-completed" /> -->
+<!--              </items> -->
+<!--            </MenuItem> -->
+<!--            <MenuItem text="Uncategorized Items" icon="sap-icon://building" /> -->
+<!--            <MenuItem text="Wearing Parts" icon="sap-icon://display" /> -->
+<!--          </items> -->
+<!--        </Menu> -->
+<!--      </menu> -->
+<!--    </MenuButton>
+
+comment
+
+
+<SearchField width="30%" placeholder="Item Search" class="sapUiTinyMarginTop searchfield" search="OnSerch" id="IdSearch">
+<layoutData>
+<OverflowToolbarLayoutData priority="NeverOverflow"/>
+</layoutData>
+</SearchField>
+<ToolbarSpacer visible="{=!${device>/system/phone}}">
+<layoutData>
+<OverflowToolbarLayoutData priority="NeverOverflow"/>
+</layoutData>
+</ToolbarSpacer>
+<Button tooltip="{i18n>Help}" id="idHelp" type="Transparent" press="onCheckOutHelp" icon="sap-icon://sys-help"
+class="accountButton sapUiSmallMarginBegin cartButton " width="{= ${device>/system/phone} ? '120px' : 'auto'}">
+<layoutData>
+<OverflowToolbarLayoutData priority="NeverOverflow"/>
+</layoutData>
+</Button>
+<Button tooltip="{i18n>addToCart}" id="idCartCount" type="Transparent" press="onCheckOutPress" icon="sap-icon://cart-3"
+class="accountButton sapUiSmallMarginBegin cartButton ">
+<layoutData>
+<OverflowToolbarLayoutData priority="NeverOverflow"/>
+</layoutData>
+</Button>
+<Button tooltip="My Settings" text="" type="Transparent" press="PressAccount" icon="sap-icon://action-settings"
+class="accountButton AccountButton cartButton">
+<layoutData>
+<OverflowToolbarLayoutData priority="NeverOverflow"/>
+</layoutData>
+</Button>
+<Button text="My Requests" type="Emphasized" press="onPresMyRequest" class="AccountButton">
+<layoutData>
+<OverflowToolbarLayoutData priority="NeverOverflow"/>
+</layoutData>
+</Button>
+</tnt:ToolHeader>
+</tnt:header>
+<tnt:mainContents>
+<App id="mainContents"/>
+</tnt:mainContents>
+</tnt:ToolPage> -->
